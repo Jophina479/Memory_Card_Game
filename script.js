@@ -18,7 +18,16 @@ let secondCard = null;
 let lock = false;
 let moves = 0;
 let matched = 0;
+let best = localStorage.getItem("best");
 
+if(best){
+    document.getElementById("best").innerText = best;
+}
+if(!best || moves < best){
+
+    localStorage.setItem("best",moves);
+
+}
 function startTimer(){
 
     timer = setInterval(()=>{
