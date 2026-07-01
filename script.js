@@ -139,5 +139,9 @@ function restartGame(){
 
     startTimer(); // Start a new timer
 }
+confetti({
+    particleCount:150,
+    spread:120
+});
 
 createBoard();
