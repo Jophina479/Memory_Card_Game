@@ -1,6 +1,8 @@
 const game = document.getElementById("game");
 const movesText = document.getElementById("moves");
 const timerText = document.getElementById("timer");
+const flipSound = new Audio("flip.mp3");
+const winSound = new Audio("win.mp3");
 
 let time = 0;
 let timer;
@@ -11,6 +13,7 @@ const emojis = [
 "🍒","🥝","🍍","🥥",
 "🍒","🥝","🍍","🥥"
 ];
+
 
 let cards = [];
 let firstCard = null;
@@ -143,5 +146,9 @@ confetti({
     particleCount:150,
     spread:120
 });
+
+flipCard()
+flipSound.play();
+winSound.play();
 
 createBoard();
