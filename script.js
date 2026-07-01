@@ -1,5 +1,9 @@
 const game = document.getElementById("game");
 const movesText = document.getElementById("moves");
+const timerText = document.getElementById("timer");
+
+let time = 0;
+let timer;
 
 const emojis = [
 "🍎","🍌","🍇","🍓",
@@ -14,6 +18,15 @@ let secondCard = null;
 let lock = false;
 let moves = 0;
 let matched = 0;
+
+function startTimer(){
+
+    timer = setInterval(()=>{
+        time++;
+        timerText.innerText = time;
+    },1000);
+
+}
 
 function shuffle(array){
     return array.sort(()=>Math.random()-0.5);
@@ -69,11 +82,13 @@ function flipCard(){
 
         if(matched===16){
 
-            setTimeout(()=>{
-                alert("🎉 Congratulations! You Won!");
-            },300);
+    clearInterval(timer); // Stop the timer
 
-        }
+    setTimeout(()=>{
+        alert("🎉 Congratulations! You Won!");
+    },300);
+
+}
 
     }
     else{
@@ -92,7 +107,7 @@ function flipCard(){
 }
 
 function reset(){
-
+ 
     firstCard=null;
     secondCard=null;
     lock=false;
@@ -101,12 +116,19 @@ function reset(){
 
 function restartGame(){
 
-    moves=0;
-    matched=0;
-    movesText.innerText=0;
+    clearInterval(timer); // Stop previous timer
+
+    time = 0;
+    timerText.innerText = 0;
+
+    moves = 0;
+    matched = 0;
+    movesText.innerText = 0;
+
     reset();
     createBoard();
 
+    startTimer(); // Start a new timer
 }
 
 createBoard();
